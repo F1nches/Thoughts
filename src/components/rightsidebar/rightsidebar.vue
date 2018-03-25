@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <h5>Filter thought categories</h5>
+    <!-- <h5>Filter thought categories</h5>
     <div class="categories-container">
       <i class="material-icons">face</i>
       <i class="material-icons">brush</i>
@@ -11,8 +11,9 @@
       <i class="material-icons">child_care</i>
       <i class="material-icons">blur_on</i>
       <i class="material-icons">cloud_queue</i>
-    </div>
-    <h5>Top Thoughts</h5>
+    </div> -->
+    <h5>TopThoughts</h5>
+    <p><small>TOP THOUGHTS FOR 03/24/2018</small></p>
     <div class="col-xs-12 thought-single-container" v-for="thought in topThoughts">
       <div class="thought-single">
         <div class="thought-content">{{ thought.content }}</div>
@@ -22,6 +23,11 @@
           <div class="meta-item thought-rep">{{ thought.rep }}</div>
         </div>
       </div>
+    </div>
+    <h5>Trending</h5>
+    <p><small>TOP TOPICS FOR 03/24/2018</small></p>
+    <div class="col-xs-12 thought-single-container">
+      <div class="trending">$trump</div><div class="trending">$rainbowsix</div><div class="trending">$rocketleague</div><div class="trending">$drpepper</div><div class="trending">$wendys</div>
     </div>
   </div>
 </template>
@@ -90,5 +96,13 @@ export default {
     padding: 0px 10px;
     border-radius: 3px;
     box-shadow: 1px 1px 5px #1a222b;
+  }
+  div.trending {
+    background-image: linear-gradient(to right,#00b3ff,#08f);
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin: 3px;
+    display: inline-block;
+    cursor: pointer;
   }
 </style>

@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-
+import Landing from '@/views/landing/landing'
 import Profile from '@/views/profile'
+import ProfileHome from '@/views/profilehome/profilehome'
 import ThoughtDeposit from '@/views/thoughtdeposit/thoughtdeposit'
 import ThoughtSwipe from '@/views/thoughtswipe/thoughtswipe'
 import ThoughtWallet from '@/views/thoughtwallet/thoughtwallet'
@@ -14,14 +15,19 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Profile',
-      component: Profile
+      name: 'Landing',
+      component: Landing
     },
     {
       path: '/profile',
       name: 'Profile',
       component: Profile,
       children: [
+        {
+          path: '/',
+          name: 'ProfileHome',
+          component: ProfileHome
+        },
         {
           path: 'deposit',
           name: 'ThoughtDeposit',

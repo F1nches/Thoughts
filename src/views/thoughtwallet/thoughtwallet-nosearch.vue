@@ -2,9 +2,6 @@
   <div class="wallet-container">
     <div><h1 class="title">{{ title }}</h1></div>
     <div class="sort">
-      <div class="search">
-        <input type="text" v-model="searchText">
-      </div>
       <div class="sort-arrow" v-on:click="sortWalletByScoreUp()">
         <i class="material-icons">trending_down</i>
       </div>
@@ -17,7 +14,7 @@
     </div>
     <div class="row">
 
-      <div class="col-xl-4 col-md-6 thought-single-container" v-for="thought in returnWallet">
+      <div class="col-xl-4 col-md-6 thought-single-container" v-for="thought in thoughtWallet">
         <div class="thought-single">
           <div class="thought-content">{{ thought.content }}</div>
           <div class="thought-meta">
@@ -41,21 +38,10 @@ export default {
     return {
       title: 'My ThoughtWallet',
       thoughtWallet: [],
-      searchText: ''
     }
   },
   created: function() {
     this.loadThoughtWallet();
-  },
-  computed: {
-    returnWallet: function() {
-      if (this.searchText.length) {
-        return this.thoughtWallet.filter(item => {
-           return item.content.indexOf(this.searchText.toLowerCase()) > -1
-        })
-      }
-      return this.thoughtWallet;
-    }
   },
   methods: {
     repColor: function(rep) {
