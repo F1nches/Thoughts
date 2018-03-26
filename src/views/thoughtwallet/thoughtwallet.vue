@@ -3,7 +3,7 @@
     <div><h1 class="title">{{ title }}</h1></div>
     <div class="sort">
       <div class="search">
-        <input type="text" v-model="searchText">
+        <input type="text" v-model="searchText" placeholder="Search...">
       </div>
       <div class="sort-arrow" v-on:click="sortWalletByScoreUp()">
         <i class="material-icons">trending_down</i>
@@ -150,8 +150,18 @@ export default {
     top: 15px;
     cursor: pointer;
   }
-  .sort-arrow {
+  .sort > div {
     display: inline-block;
+  }
+  .sort-arrow {
     margin: 10px;
+  }
+  input {
+    width: 100%;
+    background: none;
+    border: 0;
+    box-shadow: 0px 0px 20px #1a222b;
+    color: #fff;
+    padding: 10px;
   }
 </style>

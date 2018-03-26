@@ -10,30 +10,23 @@
           <div class="logo-box">
             <div class="box box1 rotating"></div>
             <div class="box box2 rotating-back"></div>
-            <div class="logo"><img src="static/img/brain.svg"/></div>
+            <router-link to="profile"><div class="logo"><img src="static/img/brain.svg"/></div></router-link>
           </div>
 
           <div class="login-form-container">
-            <form class="login-form">
-              <input type="text" placeholder="username" />
-              <input type="password" placeholder="password" />
-              <button class="form-submit-btn" type="submit">Login</button>
-              <div class="login-register-switch">
-                <p>Need an account? <span class="switch register-switch-btn">Register here.</span></p>
-              </div>
-            </form>
 
             <form class="login-form register-form">
-              <input type="text" placeholder="username" />
-              <input type="email" placeholder="email" />
-              <input type="password" placeholder="password" />
-              <input type="password" placeholder="re-enter password" />
-              <button class="form-submit-btn" type="submit">Register</button>
+              <input type="text" placeholder="username" v-model="username"/>
+              <input type="email" placeholder="email" v-model="email"/>
+              <input type="password" placeholder="password" v-model="password"/>
+              <input type="password" placeholder="re-enter password" v-model="repassword"/>
+              <button class="form-submit-btn" type="submit" v-on:click.prevent="submitUser()">Register</button>
               <div class="login-register-switch">
                 <p>Already have an account? <span class="switch login-switch-btn">Login here.</span></p>
               </div>
             </form>
           </div>
+          <div class="message">{{ responseMessage }} <router-link to="profile" v-if="profileLink">Go to my profile</router-link></div>
         </div>
 
       </div>
@@ -44,12 +37,44 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
   name: 'Signup',
   data () {
     return {
-      title: 'Signup'
+      title: 'Signup',
+      username: '',
+      email: '',
+      password: '',
+      repassword: '',
+      responseMessage: '',
+      profileLink: false
+    }
+  },
+  methods: {
+    submitUser: function() {
+      let self = this;
+
+      if (this.username && this.email && this.password && this.password === this.repassword) {
+        axios.post('http://localhost:3000/api/users/register', {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        }).then(function(response){
+          self.responseMessage = 'New user successfully registered.';
+          self.profileLink = true;
+        }).catch(e => {
+          this.errors.push(e);
+          self.responseMessage = 'Error submitting your user information. Please try again.';
+        })
+
+        // Reset form data after submitting
+        this.username = '';
+        this.email = '';
+        this.password = '';
+      } else {
+        self.responseMessage = 'Missing some vital information. Please try again.';
+      }
     }
   }
 }
@@ -125,10 +150,6 @@ p {
   background: #34495e;
   transform: scale(1.05);
   cursor: pointer;
-}
-
-.register-form {
-  display: none;
 }
 
 .login-register-switch {
@@ -264,5 +285,14 @@ p {
   -o-animation: rotating-back 13s ease-in infinite;
   animation: rotating-back 13s ease-in infinite;
 }
-
+.message {
+  color: #222f3e;
+  text-align: center;
+  margin: 10px;
+  margin-top: 0;
+}
+.login-register-switch {
+  color: #222f3e;
+  text-align: center;
+}
 </style>

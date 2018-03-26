@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Landing from '@/views/landing/landing'
+import Signup from '@/views/signup/signup'
 import Profile from '@/views/profile'
 import ProfileHome from '@/views/profilehome/profilehome'
 import ThoughtDeposit from '@/views/thoughtdeposit/thoughtdeposit'
@@ -17,6 +18,11 @@ export default new Router({
       path: '/',
       name: 'Landing',
       component: Landing
+    },
+    {
+      path: '/register',
+      name: 'Signup',
+      component: Signup
     },
     {
       path: '/profile',

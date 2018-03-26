@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <h2>Have something to say? Want to see what others are talking about?</h2>
         <p>Submit your thoughts and view/save other people's thoughts with ThoughtBank. Gain reputation and unlock exclusive badges and skins with popular thoughts.</p>
-        <router-link to="/profile"><div class="get-started">Get started</div></router-link>
+        <router-link to="register"><div class="get-started">Get started</div></router-link>
       </div>
     </div>
   </div>

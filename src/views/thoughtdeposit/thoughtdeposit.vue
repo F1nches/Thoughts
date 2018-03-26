@@ -52,7 +52,7 @@ export default {
         this.tags = '';
         this.content = '';
       } else {
-        self.responseMessage = 'Is your mind as empty as the thought box above? Please enter a thought and try again.';
+        self.responseMessage = 'Forgot to enter a thought? Please enter a thought and try again.';
       }
     }
   }
